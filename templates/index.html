@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/static/images/logosurveil.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Smooch+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <title>Surveil</title>
+</head>
+
+<body id="home">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #F3FFFF">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{url_for('static', filename='images/logosurveil.png')}}" alt="Bootstrap" width="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#information">Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('detection') }}">Detection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#team">Our Team</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <input type="checkbox" id="check">
+        <label class="chat-btn" for="check"> <i class="fa fa-commenting-o comment"></i> <i
+                class="fa fa-close close"></i>
+        </label>
+        <div class="wrapper" id="scrollable-content">
+            <div class="header text-center">
+                <i class="fa-solid fa-user-headset"></i></i>SurveilBot<i class="fa-solid fa-user-headset"></i>
+            </div>
+            <main class="msger-chat">
+                <div class="msg left-msg">
+                    <div class="msg-img"></div>
+                    <div class="msg-bubble">
+                        <div class="msg-info">
+                            <div class="msg-info-name">SURVEILBOT</div>
+                            <div class="now">Sekarang</div>
+                        </div>
+
+                        <div class="msg-text text-justify">
+                            👋 selamat datang di SURVEILBOT
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <form class="msger-inputarea">
+                <input type="text" class="msger-input" id="textInput" placeholder="Masukkan pesanmu disini...">
+                <button type="submit" class="msger-send-btn">Kirim</button>
+            </form>
+        </div>
+    </div>
+    <!-- End chatbot -->
+
+    <!-- Home -->
+    <section class="home text-center text-sm-start">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1>Hindari Risiko, <br> Lindungi Masa Depan</h1>
+                    <p class="lead">“Keselamatan di Tempat Kerja adalah Investasi Terbaik"</p>
+                </div>
+                <div class="col-md-6">
+                    <img class="img-fluid" src="{{url_for('static', filename='images/header2.png')}}">
+                </div>
+            </div>
+        </div>
+        <!-- gelombang -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="
+        #C7F7FA" fill-opacity="1"
+                d="M0,224L26.7,213.3C53.3,203,107,181,160,186.7C213.3,192,267,224,320,218.7C373.3,213,427,171,480,154.7C533.3,139,587,149,640,160C693.3,171,747,181,800,165.3C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,202.7C1173.3,213,1227,171,1280,154.7C1333.3,139,1387,149,1413,154.7L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+            </path>
+        </svg>
+        <!-- akhir gelombang -->
+    </section>
+    <!-- Home End -->
+
+    <!-- Information -->
+    <section id="information" class="text-center text-sm-start">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Information</h2>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img class="img-fluid" src="{{url_for('static', filename='images/information1.png')}}">
+                </div>
+                <div class="col-md-6">
+                    <h1>S U R V E I L</h1>
+                    <p>Solusi pintar berbasis website yang menggabungkan kecerdasan buatan dan computer vision untuk
+                        meningkatkan
+                        keselamatan di tempat kerja. <br> Dirancang khusus untuk industri konstruksi dan manufaktur,
+                        SURVEIL hadir
+                        sebagai solusi cerdas untuk mengatasi risiko kecelakaan dan meningkatkan kesadaran keselamatan.
+                    </p>
+                    <a class="btn btn-outline-primary" href="{{ url_for('detection') }}" role="button">Start</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- gelombang -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="
+        #F3FFFF" fill-opacity="1"
+                d="M0,224L26.7,213.3C53.3,203,107,181,160,186.7C213.3,192,267,224,320,218.7C373.3,213,427,171,480,154.7C533.3,139,587,149,640,160C693.3,171,747,181,800,165.3C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,202.7C1173.3,213,1227,171,1280,154.7C1333.3,139,1387,149,1413,154.7L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+            </path>
+        </svg>
+        <!-- akhir gelombang -->
+    </section>
+    <!-- End Information -->
+
+
+    <!-- Information 2-->
+    <section id="information2" class="text-center text-sm-start">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2>R E A L - T I M E <br>D E T E C T I O N</h2>
+                    <p>Dengan fitur monitoring real-time, SURVEIL memberikan akses langsung ke kondisi di lapangan. <br>
+                        Pengelola proyek dapat melihat feed kamera secara langsung dan mendapatkan pemahaman mendalam
+                        tentang situasi di lokasi kerja.
+                    </p>
+                    <a class="btn btn-outline-primary" href="{{ url_for('detection') }}" role="button">Start</a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <img class="img-fluid" src="{{url_for('static', filename='images/information2.png')}}"
+                        style="width: 500px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- gelombang -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="
+        #C7F7FA" fill-opacity="1"
+                d="M0,224L26.7,213.3C53.3,203,107,181,160,186.7C213.3,192,267,224,320,218.7C373.3,213,427,171,480,154.7C533.3,139,587,149,640,160C693.3,171,747,181,800,165.3C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,202.7C1173.3,213,1227,171,1280,154.7C1333.3,139,1387,149,1413,154.7L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+            </path>
+        </svg>
+        <!-- akhir gelombang -->
+    </section>
+    <!-- End Information 2 -->
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Our Team</h2>
+                </div>
+            </div>
+            <div class="row pt-5 text-center g-5">
+                <div class="col-md">
+                    <div class="card border border-custom" style="background-color: #F3FFFF">
+                        <img src="{{ url_for('static', filename='images/putri.png') }}" class="p-2 card-img-top" alt="putri">
+                        <div class="card-body">
+                            <h5 class="card-title">Putri Ajeng Imamah</h5>
+                            <p class="card-text">"Hidup ini kayak naik jet ski di lautan kebebasan, full speed ahead! Tapi safety itu kayak life jacket, selalu ada buat ngejaga kita. So, tetap kece tapi stay rad-safe, guys!"</p>
+                            <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/putriajengimamah/"
+                                role="button">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card border border-custom" style="background-color: #F3FFFF">
+                        <img src="{{ url_for('static', filename='images/sultan.png') }}" class="p-2 card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Sultan Ichsan A</h5>
+                            <p class="card-text">"no time to die"</p>
+                            <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/sultan-ichsan-a-455487226?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                role="button">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card border border-custom" style="background-color: #F3FFFF">
+                        <img src="{{ url_for('static', filename='images/aris.png') }}" class="p-2 card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Mohamad Arisha</h5>
+                            <p class="card-text">"Keselamatan proyek konstruksi itu seperti helm, lebih baik dipakai daripada diabaikan. Karena kita ingin bangunan kokoh, bukan reputasi yang roboh!"</p>
+                            <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/mohamad-arisha-9859031b7/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                role="button">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card border border-custom" style="background-color: #F3FFFF">
+                        <img src="{{ url_for('static', filename='images/diah.png') }}" class="p-2 card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Diah Ayuningtyas Wati</h5>
+                            <p class="card-text">"Jangan terlalu serius mencari makna hidup. Kehidupan seringkali seperti lagu, lebih baik dinikmati daripada diulang."</p>
+                            <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/diah-ayuningtyas-wati-776949221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                role="button">LinkedIn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- gelombang -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="
+        #F3FFFF" fill-opacity="1"
+                d="M0,224L26.7,213.3C53.3,203,107,181,160,186.7C213.3,192,267,224,320,218.7C373.3,213,427,171,480,154.7C533.3,139,587,149,640,160C693.3,171,747,181,800,165.3C853.3,149,907,107,960,117.3C1013.3,128,1067,192,1120,202.7C1173.3,213,1227,171,1280,154.7C1333.3,139,1387,149,1413,154.7L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+            </path>
+        </svg>
+        <!-- akhir gelombang -->
+    </section>
+    <!-- End Team -->
+
+    <!-- Footer -->
+    <footer>
+        <!-- Icon GitHub -->
+        <a href="https://github.com/your-github" target="_blank" class="text-dark">
+            <i class="bi bi-github"></i>
+        </a>
+        
+        <!-- Icon YouTube -->
+        <a href="https://www.youtube.com/your-channel" target="_blank" class="text-danger">
+            <i class="bi bi-youtube"></i>
+        </a>
+        
+        <!-- Icon Email -->
+        <a href="putriajengimamah.study@gmail.com" target="_blank" class="text-info">
+            <i class="bi bi-envelope"></i>
+        </a>
+
+        <!-- Copyright -->
+        <p class="mt-2">
+            Copyright &copy; 2023 Surveil Team
+        </p>
+    </footer>
+    <!-- End Footer -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+
+    <!-- chatbot -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+
+</body>
+
+</html>

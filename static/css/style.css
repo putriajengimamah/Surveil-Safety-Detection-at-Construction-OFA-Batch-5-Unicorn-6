@@ -1,0 +1,385 @@
+:root{
+  /* Font */
+  --main-font: "Poppins", sans-serif;
+  --info-font: "Smooch Sans", sans-serif;
+}
+
+.navbar{
+  font-family: var(--main-font);
+}
+
+body{
+  font-family: var(--main-font);
+}
+
+.home{
+  padding-top: 100px;
+  background-color: #F3FFFF;
+}
+
+section{
+  padding-top: 6rem;
+}
+
+/* Information */
+#information {
+  background-color: #C7F7FA;
+}
+
+#information h1 {
+  font-family: var(--info-font);
+  font-size: 100px;
+}
+/* End Information */
+
+/* Information 2 */
+#information2 {
+  background-color: #F3FFFF;
+}
+
+#information2 h1 {
+  font-family: var(--info-font);
+  font-size: 100px;
+}
+
+#information2 h2 {
+  font-family: var(--info-font);
+  font-size: 70px;
+}
+/* End Information 2 */
+
+/* Team */
+#team{
+  background-color: #C7F7FA;
+}
+
+#team img{
+  height: 300px;
+}
+
+.border-custom {
+  border-color: #64CCC5 !important;
+}
+
+/* .card-body img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  border-radius: 100px; 
+} */
+
+.card {
+  height: 400px; /* Atur tinggi kartu sesuai kebutuhan */
+}
+
+.card-body {
+  max-height: 100%; /* Atur sesuai kebutuhan */
+  overflow-y: auto; /* Aktifkan scroll vertikal jika diperlukan */
+}
+
+.card-body img {
+  object-fit: cover;
+  max-width: 100%;
+  height: 300px;
+  border-radius: 100px; 
+}
+
+
+/*  End Team */
+
+/* chatbot */
+
+.chat-btn {
+  z-index: 1;
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  cursor: pointer;
+  background-color: #C7F7FA;
+}
+
+.chat-btn .close {
+  display: none;
+}
+
+.chat-btn i {
+  transition: all 0.9s ease;
+}
+
+#check:checked ~ .chat-btn i {
+  display: block;
+  pointer-events: auto;
+  transform: rotate(180deg);
+}
+
+#check:checked ~ .chat-btn .comment {
+  display: none;
+}
+
+.chat-btn i {
+  font-size: 22px;
+  color: #061431 !important;
+}
+
+.chat-btn {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background-color: #FF914D;
+  color: #061431;
+  font-size: 22px;
+  border: none;
+}
+
+.wrapper {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  max-block-size: 500px;
+  width: 300px;
+  overflow-y: hidden;
+  background-color: #fff;
+  background-image: url("/static/images/bgchat.jpg");
+  border-radius: 5px;
+  opacity: 0;
+  transition: all 0.4s;
+  z-index: 1;
+}
+
+#check:checked ~ .wrapper {
+  opacity: 1;
+}
+
+.wrapper .header {
+  position: fixed;
+  padding-top: 10px;
+  height: 40px;
+  width: 300px;
+  background-color: #2A3472;
+  border-radius: 5px 5px 0px 0px;
+  margin-bottom: 10px;
+  color: #FF914D !important;
+}
+
+.msger-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.msg {
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.msg-img {
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  margin: 0 10px 0 0;
+  background-image: url("/static/images/log.png");
+}
+
+.msg-bubble {
+  width: 170px;
+  padding: 10px;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.msg-info-time {
+  font-size: 12px;
+  font-size: 0.85em;
+}
+
+.msg-text {
+  font-size: 12px;
+}
+
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+
+.right-msg .msg-bubble {
+  background: #FF914D;
+  color: #fff;
+  border-bottom-right-radius: 0;
+}
+
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  background: #2A3472;
+}
+
+.msger-inputarea * {
+  padding: 10px;
+  border: none;
+  font-size: 12px;
+}
+
+.msger-input {
+  flex: 1;
+  color: #292929;
+  background: #fff;
+}
+
+.msger-send-btn {
+  margin-left: 10px;
+  background: #FF914D;
+  color: #061431;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+
+.msger-send-btn:hover {
+  background: #29ADB2;
+}
+
+/* scroll chat */
+.msger-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  max-height: 400px; /* Atur ketinggian maksimum chat area di sini */
+}
+
+.msger-chat::-webkit-scrollbar {
+  width: 5px;
+}
+
+.msger-chat::-webkit-scrollbar-thumb {
+  background-color: #29ADB2;
+  border-radius: 5px;
+}
+
+.msger-chat::-webkit-scrollbar-track {
+  background-color: #F3FFFF;
+}
+
+/* End chatbot  */
+
+/* Detection */
+.scan {
+  height: 120vh;
+  padding-top: 90px;
+  background-color: #F3FFFF;
+}
+
+.scan .webcam-container {
+  width: 650px;
+  height: 490px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 10px solid #FF914D;
+  background-color: #061431;
+  margin: 20px;
+}
+
+.tombol {
+  font-size: 20px !important;
+}
+
+#body {
+  position: relative;
+}
+
+#body video {
+  transition: filter 250ms linear;
+}
+
+#body.loading video {
+  filter: grayscale(1) brightness(0.25);
+}
+
+#body.loading:before {
+  content: "Loading Model...";
+  color: white;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  font-size: 3em;
+  font-weight: bold;
+  z-index: 100;
+}
+
+canvas {
+  position: absolute;
+  z-index: 9999;
+}
+
+video,
+canvas {
+  width: 100%;
+  /* margin: 0 50px 0 50px; */
+}
+
+#fps {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+#fps:empty {
+  display: none;
+}
+
+#fps:after {
+  content: " fps";
+}
+
+/* End detection */
+
+/* Custom Footer Styling */
+footer {
+  background-color: #F3FFFF;
+  padding: 20px;
+  text-align: center;
+}
+
+footer a {
+  font-size: 35px; /* Ukuran ikon */
+  margin: 0 10px; /* Tambahkan margin di kedua sisi ikon */
+  display: inline-flex; /* Gunakan flex untuk menghilangkan whitespace */
+  align-items: center; /* Pusatkan ikon secara vertikal */
+}
+
+footer p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+

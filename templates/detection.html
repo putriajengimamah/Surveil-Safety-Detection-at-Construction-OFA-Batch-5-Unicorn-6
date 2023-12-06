@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="/static/images/logosurveil.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Smooch+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
+    <title>Surveil</title>
+</head>
+
+<body id="home">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #F3FFFF">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{url_for('static', filename='images/logosurveil.png')}}" alt="Bootstrap" width="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#information">Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('detection') }}">Detection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}#team">Our Team</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <input type="checkbox" id="check">
+        <label class="chat-btn" for="check"> <i class="fa fa-commenting-o comment"></i> <i
+                class="fa fa-close close"></i>
+        </label>
+        <div class="wrapper" id="scrollable-content">
+            <div class="header text-center">
+                <i class="fa-solid fa-user-headset"></i></i>SurveilBot<i class="fa-solid fa-user-headset"></i>
+            </div>
+            <main class="msger-chat">
+                <div class="msg left-msg">
+                    <div class="msg-img"></div>
+                    <div class="msg-bubble">
+                        <div class="msg-info">
+                            <div class="msg-info-name">SURVEILBOT</div>
+                            <div class="now">Sekarang</div>
+                        </div>
+
+                        <div class="msg-text text-justify">
+                            👋 selamat datang di SURVEILBOT
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <form class="msger-inputarea">
+                <input type="text" class="msger-input" id="textInput" placeholder="Masukkan pesanmu disini...">
+                <button type="submit" class="msger-send-btn">Kirim</button>
+            </form>
+        </div>
+    </div>
+    <!-- End chatbot -->
+
+
+    <!-- scan -->
+    <div class="container-fluid d-flex justify-content-center scan">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Surveil <span class="warna">Detection</span></h2>
+                <div class="webcam-container">
+                    <div class="loading justify-content-center d-flex">
+                        <video id="video" autoplay muted playsinline></video>
+                        <div id="fps"></div>
+                    </div>
+                </div>
+                <div class="button d-flex justify-content-center d-grid gap-2">
+                    <button class="btn tombol btn-warning" id="btn-start" type="button" style="background-color: #FF914D">Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- akhir scan -->
+    
+
+    <!-- Footer -->
+    <footer>
+        <!-- Icon GitHub -->
+        <a href="https://github.com/your-github" target="_blank" class="text-dark">
+            <i class="bi bi-github"></i>
+        </a>
+        
+        <!-- Icon YouTube -->
+        <a href="https://www.youtube.com/your-channel" target="_blank" class="text-danger">
+            <i class="bi bi-youtube"></i>
+        </a>
+        
+        <!-- Icon Email -->
+        <a href="mailto:your@email.com" target="_blank" class="text-info">
+            <i class="bi bi-envelope"></i>
+        </a>
+
+        <!-- Copyright -->
+        <p class="mt-2">
+            Copyright &copy; 2023 Surveil Team
+        </p>
+    </footer>
+    <!-- End Footer -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"
+        integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww=="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/async/3.2.0/async.min.js"
+        integrity="sha512-6K6+H87tLdCWvY5ml9ZQXLRlPlDEt8uXmtELhuJRgFyEDv6JvndWHg3jadJuBVGPEhhA2AAt+ROMC2V7EvTIWw=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.roboflow.com/0.2.26/roboflow.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+
+    <!-- chatbot -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+
+</body>
+
+</html>
