@@ -1,6 +1,39 @@
 var btnStart = document.getElementById("btn-start");
 let nyala = true;
 let stopExecution = true;
+let statusPelanggaran = false;
+var video;
+let videoStream;
+let currentViolationStatus = false;
+
+// BARU
+// Speech Synthesis Utterance
+const synth = window.speechSynthesis;
+
+function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    // Atur parameter suara
+    utterance.volume = 1; // Volume (0 hingga 1)
+    utterance.rate = 1; // Kecepatan pelafalan (0.1 hingga 10)
+    utterance.pitch = 1; // Tinggi suara (0 hingga 2)
+
+    // Atur suara yang digunakan (opsional)
+    // utterance.voice = speechSynthesis.getVoices().filter(voice => voice.name === 'Google UK English Female')[0];
+
+    // Cari suara dalam bahasa Indonesia (misalnya: 'Google Bahasa Indonesia')
+    const indonesianVoice = speechSynthesis.getVoices().find(voice => voice.lang === 'id-ID');
+
+    // Jika suara dalam bahasa Indonesia ditemukan, gunakan suara tersebut
+    if (indonesianVoice) {
+        utterance.voice = indonesianVoice;
+    } else {
+        console.warn('Suara dalam bahasa Indonesia tidak ditemukan. Menggunakan suara default.');
+    }
+
+    // Lakukan pengucapan
+    synth.speak(utterance);
+}
 
 function startVidio() {
     var model;
@@ -21,6 +54,7 @@ function startVidio() {
     
     startVideoStreamPromise.then(function (stream) {
         return new Promise(function (resolve) {
+            videoStream = stream; // Simpan objek stream ke variabel global
             video.srcObject = stream;
             video.onloadeddata = function () {
                 video.play();
@@ -174,32 +208,58 @@ function startVidio() {
     var pastFrameTimes = [];
     const detectFrame = function () {
         if (!model) return requestAnimationFrame(detectFrame);
-  
+    
         model
             .detect(video)
             .then(function (predictions) {
                 requestAnimationFrame(detectFrame);
                 renderPredictions(predictions);
-  
-                if (prevTime) {
-                    pastFrameTimes.push(Date.now() - prevTime);
-                    if (pastFrameTimes.length > 30) pastFrameTimes.shift();
-  
-                    var total = 0;
-                    _.each(pastFrameTimes, function (t) {
-                        total += t / 1000;
-                    });
-  
-                    var fps = pastFrameTimes.length / total;
-                    $("#fps").text(Math.round(fps));
+    
+                let tidakMemakaiHelm = false;
+                let tidakMemakaiRompi = false;
+    
+                predictions.forEach(function (prediction) {
+                    if (prediction.class === "no-helmet") {
+                        tidakMemakaiHelm = true;
+                    } else if (prediction.class === "no-vest") {
+                        tidakMemakaiRompi = true;
+                    }
+                });
+    
+                // Periksa pelanggaran dan kirim laporan
+                if (tidakMemakaiHelm && tidakMemakaiRompi) {
+                    if (!currentViolationStatus) {
+                        kirimLaporanPelanggaran("person-no-helmet-and-no-vest");
+                        currentViolationStatus = true;
+                        // BARU
+                        speak("Peringatan! Seseorang tidak menggunakan helm dan rompi.");
+                    }
+                } else if (tidakMemakaiHelm) {
+                    if (!currentViolationStatus) {
+                        kirimLaporanPelanggaran("person-no-helmet");
+                        currentViolationStatus = true;
+                        speak("Peringatan! Seseorang tidak menggunakan helm.");
+                    }
+                } else if (tidakMemakaiRompi) {
+                    if (!currentViolationStatus) {
+                        kirimLaporanPelanggaran("person-no-vest");
+                        currentViolationStatus = true;
+                        speak("Peringatan! Seseorang tidak menggunakan rompi.");
+                    }
+                } else {
+                    // Tidak ada pelanggaran, setel statusPelanggaran menjadi false
+                    currentViolationStatus = false;
                 }
-                prevTime = Date.now();
             })
             .catch(function (e) {
-                console.log("CAUGHT", e);
+                console.log("Error mendeteksi frame:", e);
                 requestAnimationFrame(detectFrame);
             });
     };
+
+    // BARU
+    detectFrame();
+    
 } else{
 
     startVideoStreamPromise.then(function (stream) {
@@ -214,20 +274,136 @@ function startVidio() {
 
     return
 }
-  };
+};
+
+  
+  // Fungsi untuk mengirim laporan pelanggaran ke server
+function kirimLaporanPelanggaran(jenisPelanggaran) {
+    // Anda dapat menggunakan AJAX atau fetch untuk mengirim data ke server
+    $.ajax({
+        type: "POST",
+        url: "/lapor_pelanggaran",
+        data: {
+            jenisPelanggaran: jenisPelanggaran,
+            timestamp: new Date().toISOString(),
+        },
+        success: function (response) {
+            console.log("Laporan pelanggaran berhasil dikirim");
+        },
+        error: function (error) {
+            console.error("Error mengirim laporan pelanggaran:", error);
+        },
+    });
+}
+
+// const deteksiFrame = function () {
+//     if (!model) return requestAnimationFrame(deteksiFrame);
+
+//     model
+//         .detect(video)
+//         .then(function (prediksi) {
+//             requestAnimationFrame(deteksiFrame);
+//             renderPrediksi(prediksi);
+
+//             let tidakMemakaiHelm = false;
+//             let tidakMemakaiRompi = false;
+
+//             prediksi.forEach(function (pred) {
+//                 if (pred.class === "no-helmet") {
+//                     tidakMemakaiHelm = true;
+//                 } else if (pred.class === "no-vest") {
+//                     tidakMemakaiRompi = true;
+//                 }
+//             });
+
+//             // Periksa pelanggaran dan kirim laporan
+//             if (tidakMemakaiHelm && tidakMemakaiRompi) {
+//                 statusPelanggaran = true;
+//                 kirimLaporanPelanggaran("person-no-helmet-and-no-vest");
+//             } else if (tidakMemakaiHelm) {
+//                 statusPelanggaran = true;
+//                 kirimLaporanPelanggaran("person-no-helmet");
+//             } else if (tidakMemakaiRompi) {
+//                 statusPelanggaran = true;
+//                 kirimLaporanPelanggaran("person-no-vest");
+//             } else {
+//                 // Tidak ada pelanggaran, setel statusPelanggaran menjadi false
+//                 statusPelanggaran = false;
+//             }
+//         })
+//         .catch(function (e) {
+//             console.log("Error mendeteksi frame:", e);
+//             requestAnimationFrame(deteksiFrame);
+//         });
+// };
+
+function periksaDanKirimLaporanOtomatis() {
+    if (statusPelanggaran) {
+        // Panggil fungsi kirim laporan dengan jenis pelanggaran yang sesuai
+        kirimLaporanPelanggaran("person-no-helmet-and-no-vest");
+
+        // Atur agar fungsi ini dipanggil kembali setelah beberapa detik
+        setTimeout(periksaDanKirimLaporanOtomatis, 5000); // Ganti angka 5000 dengan interval yang diinginkan (dalam milidetik)
+    } else {
+        // Tidak ada pelanggaran, atur agar fungsi ini dipanggil kembali setelah beberapa detik
+        setTimeout(periksaDanKirimLaporanOtomatis, 1000); // Ganti angka 1000 dengan interval yang diinginkan (dalam milidetik)
+    }
+}
+
+function downloadLaporan() {
+    // Dapatkan data laporan pelanggaran
+    $.ajax({
+        type: "GET",
+        url: "/dapatkan_laporan_pelanggaran",
+        success: function (response) {
+            // Buat data CSV dari laporan pelanggaran
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Jenis Pelanggaran,Waktu\n";
+
+            response.laporanPelanggaran.forEach(function (laporan) {
+                csvContent += `${laporan.jenisPelanggaran},${laporan.timestamp}\n`;
+            });
+
+            // Buat elemen <a> untuk mengunduh file CSV
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "laporan_pelanggaran.csv");
+            document.body.appendChild(link);
+
+            // Klik otomatis pada elemen <a> untuk memulai unduhan
+            link.click();
+
+            // Hapus elemen <a> setelah unduhan selesai
+            document.body.removeChild(link);
+        },
+        error: function (error) {
+            console.error("Error mendapatkan laporan pelanggaran:", error);
+        },
+    });
+}
+
+// Panggil fungsi untuk pertama kali
+periksaDanKirimLaporanOtomatis();
 
   btnStart.addEventListener("click", function() {
 
     if(nyala){
-        btnStart.textContent = "Stop"
+        btnStart.textContent = "Stop";
         nyala = false;
         stopExecution = true;
-        startVidio()
+        startVidio();
+        periksaDanKirimLaporanOtomatis(); // Panggil fungsi periksa dan kirim laporan otomatis saat memulai
     }else{
-        btnStart.textContent = "Start"
+        btnStart.textContent = "Start";
         nyala = true;
         stopExecution = false;
-        startVidio()
+
+        // Hentikan aliran video saat tombol "Stop" diklik
+        if (videoStream) {
+            const tracks = videoStream.getTracks();
+            tracks.forEach(track => track.stop());
+        }
     }
 
   });
